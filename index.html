@@ -53,10 +53,14 @@
                     ]
                 },
                 options: {
-                    indexAxis: 'x', // This makes the bar chart horizontal or vertical
                     scales: {
-                        x: {
+                        y: {
                             beginAtZero: true
+                            ticks: {
+                                callback: function(value, index, ticks) {
+                                    return value + ' miles'
+                                }
+                            }
                         }
                     }
                 }
