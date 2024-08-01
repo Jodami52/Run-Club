@@ -11,7 +11,7 @@
     <canvas id="runningChart" width="400" height="200"></canvas>
     <script>
         async function fetchData() {
-            const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6zFlmP8dSQAAWgqs-9UQcjrCRUxmPlLj3_T-iYnZYhXpDtgfz3KkCcK5IWTTfsfAMQ_QzBCNVyEPu/pub?gid=0&single=true&output=csv');
+            const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6zFlmP8dSQAAWgqs-9UQcjrCRUxmPlLj3_T-iYnZYhXpDtgfz3KkCcK5IWTTfsfAMQ_QzBCNVyEPu/pub?gid=2010704561&single=true&output=csv');
             const data = await response.text();
             const rows = data.split('\n').slice(1);
             const labels = [];
@@ -43,7 +43,7 @@
                 },
                 options: {
                     scales: {
-                        y: {
+                        x: {
                             beginAtZero: true
                         }
                     }
