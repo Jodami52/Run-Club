@@ -11,7 +11,7 @@
     <canvas id="runningChart" width="400" height="200"></canvas>
     <script>
         async function fetchData() {
-            const response = await fetch('YOUR_GOOGLE_SHEETS_CSV_LINK');
+            const response = await fetch('https://docs.google.com/spreadsheets/d/12Exees6aU0Jku97AJv-Eu3-fagyJG4oIAs7CQsaevRM/edit?gid=0#gid=0');
             const data = await response.text();
             const rows = data.split('\n').slice(1);
             const labels = [];
