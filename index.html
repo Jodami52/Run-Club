@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Data Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Running Data Visualization</h1>
+    <canvas id="runningChart" width="400" height="200"></canvas>
+    <script>
+        async function fetchData() {
+            const response = await fetch('YOUR_GOOGLE_SHEETS_CSV_LINK');
+            const data = await response.text();
+            const rows = data.split('\n').slice(1);
+            const labels = [];
+            const distances = [];
+
+            rows.forEach(row => {
+                const cols = row.split(',');
+                labels.push(cols[0]); // Date
+                distances.push(parseFloat(cols[2])); // Distance
+            });
+
+            return { labels, distances };
+        }
+
+        async function createChart() {
+            const data = await fetchData();
+            const ctx = document.getElementById('runningChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Distance Run (km)',
+                        data: data.distances,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        createChart();
+    </script>
+</body>
+</html>
